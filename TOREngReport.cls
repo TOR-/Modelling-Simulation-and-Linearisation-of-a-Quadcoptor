@@ -3,14 +3,14 @@
 %% Article options
 \DeclareOption{10pt}{\PassOptionsToClass{\CurrentOption}{article}}
 %\DeclareOption{12pt}{\PassOptionsToClass{\CurrentOption}{article}}
-%\DeclareOption{authors}{\let\@author{authors}}
-\DeclareOption{title}{\let\@title{title}}
-%\DeclareOption{subject}{\let\@subject{subject}}
-%\DeclareOption{keywords}{\let\@keywords{keywords}}
-%\DeclareOption{institution}{\let\@institution{institution}}
-%\DeclareOption*{
-%\ClassWarning{TOREngReport}{Unknown option '\CurrentOption'}
-%}
+\DeclareOption{authors}{\def\@author{authors}}
+\DeclareOption{title}{\def\@title{title}}
+\DeclareOption{subject}{\def\@subject{subject}}
+\DeclareOption{keywords}{\def\@keywords{keywords}}
+\DeclareOption{institution}{\def\@institution{institution}}
+\DeclareOption*{
+	\ClassWarning{TOREngReport}{Unknown option '\CurrentOption'}
+}
 %\ExecuteOptions{10pt}
 \ProcessOptions*
 \LoadClass{article}
@@ -21,64 +21,38 @@
 \RequirePackage[utf8]{inputenc}
 \RequirePackage[a4paper,margin=2cm]{geometry}
 \RequirePackage{fancyhdr}
-\RequirePackage{lastpage}
+%\RequirePackage{lastpage}
 %\RequirePackage[french]{babel}
-\RequirePackage{graphicx, wrapfig, subcaption, setspace, booktabs, natbib, url, lipsum}
-\RequirePackage[T1]{fontenc}
-\RequirePackage[font=small, labelfont=bf]{caption}
-\RequirePackage{fourier}
-\RequirePackage[protrusion=true, expansion=true]{microtype}
-\RequirePackage{sectsty}
-\RequirePackage{flafter}
-\RequirePackage{algorithm}
+%\RequirePackage{graphicx, subcaption, setspace, booktabs, url}
+\RequirePackage{natbib}
+%\RequirePackage{wrapfig}
+%\RequirePackage[T1]{fontenc}
+%\RequirePackage[font=small, labelfont=bf]{caption}
+\RequirePackage{helvet}
 
+\RequirePackage{siunitx}
 
-\title{\@title}
-%\RequirePackage[hidelinks,pdftex,backref,
+%\RequirePackage[protrusion=true, expansion=true]{microtype}
+%\RequirePackage{sectsty}
+%\RequirePackage{flafter}
+%\RequirePackage{algorithm}
+
+%\RequirePackage{listings,xcolor, amsmath, amssymb}
+%\RequirePackage{algorithmicx}
+
+\RequirePackage[hidelinks,pdftex,backref,
 %pdfauthor=\@authors,
 %pdftitle=\@title,
 %pdfsubject=\@subject,
 %pdfkeywords=\@keywords,
-%pdfproducer={Latex with hyperref},
-%pdfcreator={pdflatex}]{hyperref}
+pdfproducer={Latex with hyperref},
+pdfcreator={pdflatex}]{hyperref}
 
-\RequirePackage{listings,xcolor,algorithmicx, algpseudocode, amsmath, amssymb}
-
-% Code listings
-\RequirePackage[newfloat]{minted}
-\usemintedstyle{tango}
-\setminted{
-linenos,
-frame=lines,
-escapeinside=||,
-mathescape=true
-}
-\lstset{
-basicstyle=\ttfamily\small,
-numberstyle=\footnotesize,
-numbers=left,
-backgroundcolor=\color{gray!10},
-frame=single,
-tabsize=2,
-rulecolor=\color{black!30},
-title=\lstname,
-escapeinside={*(}{*)},
-mathescape=true,
-breaklines=true,
-postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space},
-breakatwhitespace=true,
-framextopmargin=2pt,
-framexbottommargin=2pt,
-inputencoding=utf8,
-extendedchars=true,
-literate={á}{{\'a}}1 {è}{{\`e}}1 {é}{{\'e}}1,
-captionpos=b}
-%\lstset{language=C++}
 %\graphicspath{ {./images/} }
 
 
 \newcommand{\HRule}[1]{\rule{\linewidth}{#1}}
-\onehalfspacing
+%\onehalfspacing
 \setcounter{tocdepth}{5}
 \setcounter{secnumdepth}{5}
 
@@ -97,10 +71,32 @@ captionpos=b}
 % HEADER & FOOTER
 %-------------------------------------------------------------------------------
 \pagestyle{fancy}
-%\fancyhf{}
-\setlength\headheight{15pt}
-\fancyhead[L]{\subject}
-\fancyhead[R]{\institution}
-%\fancyfoot[R]{Page \thepage\ of \pageref{LastPage}}
+\fancyhf{}
+\fancypagestyle{body}{
+	\setlength\headheight{15pt}
+	\fancyhead[L]{EEEN40010 Control Theory}
+	\fancyhead[R]{UCD}
+	\fancyfoot[R]{\thepage}
+}
 
-\endinput
+%
+% TITLE PAGE
+%
+\renewcommand{\maketitle}[3]{
+	\pagenumbering{gobble}
+	\begin{titlepage}
+		\thispagestyle{plain}
+		\centering
+		\vspace*\baselineskip
+		{\Huge #1}\\
+		{\footnotesize #2}\\
+		{\small #3}\\
+		\vspace*{\baselineskip}
+		{\today}
+	\end{titlepage}
+	\clearpage
+	\thispagestyle{body}
+	\pagenumbering{roman}
+}
+
+%\endinput

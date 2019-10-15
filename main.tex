@@ -1,20 +1,28 @@
-%\documentclass[title={Modelling and Linearisation of a Quadcopter},authors={Cian O'Donnell and Tiarnach O' Riada}]{TOREngReport}
-\documentclass[a4paper,11pt]{article}
-\include{src/macros/notation}
+\documentclass[
+%title='Modelling Linearisation and Simulation of a Quadcopter',
+%authors='Cian O Donnell and Tiarnach O Riada',
+%keywords=' ',
+%subject='EEEN40010 Control Theory Minor Project',
+i%nstitution='UCD School of Engineering'
+]{TOREngReport}
 
- % better title needed
+\include{src/macros/notation}
 
 \date{October 2019}
 
-\title{Modelling and Linearisation of a Quadcopter}
-\author{Cian O'Donnell and Tiarnach O' Riada}
+ % TODO better title needed
+\title{Modelling, Linearisation and Simulation of a Quadcopter}
+
 \begin{document}
+\def\thetitle{Modelling, Linearisation and Simulation of a Quadcopter}
+\def\thesubject{EEEN40010 Control Theory Minor Project}
+\def\theauthors{Cian O Donnell and Tiarnach O Riada}
 
-\maketitle
+\maketitle{\thetitle}{\thesubject}{\theauthors}
 
-\newpage
 \tableofcontents
 
+\pagenumbering{arabic}
 \newpage
 \section{Introduction}                  % TODO
 Blah blah blah about quadcopters
