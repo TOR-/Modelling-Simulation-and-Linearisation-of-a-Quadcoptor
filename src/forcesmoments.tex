@@ -3,7 +3,30 @@ To model how the quadcopter interacts with its environment, we have derived the 
 \subsection{External forces}
 The quadcopter chiefly experiences two external forces: the force of gravitational attraction between itself and the Earth and the retarding force of air friction or drag.
 \subsubsection{Gravity $\vec{F}_g$}
-The simplifications used in the derivation of the gravitational force are as follows: gravity was taken to have a constant magnitude of 9.81 \SI{}{\metre\per\second\squared}
+The simplifications used in the derivation of the gravitational force are as follows: gravity was taken to have a constant magnitude of  \SI{9.81}{\metre\per\second\squared} irrespective of altitude.
+\\
+The gravitational force in the body-fixed frame was obtained as follows:
+$$
+\colvec{F}_g^b = \mat{Q}\cdot\colvec{F}_g^i = \begin{bmatrix}
+m\,g\,\sin(\theta)\\-\,m\,g\,\sin(\phi)\cos(\theta)\\-\,m\,g\,\cos(\phi)\cos(\theta)
+\end{bmatrix}
+\mathrm{, where }\:
+\colvec{F}_g^i = \begin{bmatrix}
+0\\0\\9.81
+\end{bmatrix}
+\si{\metre\per\second\squared}
+$$
+\subsubsection{Drag $\vec{F}_d$}
+The force of air friction or drag was modelled as an opposing force to the given direction of motion. The simplifications involved were: taking the density of air to be a constant value, irrespective of temperature and altitude; using a model that doesn't take into account the actual airflow over the drone; disregarding any turbulence caused by the propellers. The formula is as follows~:
+\begin{equation}
+\label{eqn:drag}
+\vec{F}_d = \frac{1}{2}\:C_d\:\rho_{air}\:u^2\:\Delta_f
+\end{equation}
+, where $C_d$ is a coefficient of drag\footnote{This was determined by taking the top speed of the drone from its spec \cite{drone-spec} and|having estimated a frontal area as outlined above|working back from there to establish an estimate. }, $\rho_{air}$ is the (constant) density of air, $u$ is the magnitude of the quadcopter's velocity in the direction of motion, $\Delta_f$ is the frontal area of the quadcopter with respect to the direction of motion.
+
+The frontal area for \cref{eqn:drag} was established by modelling the quadcopter as a box translating and rotating through space.
+% TODO put in more about the box model, mention bff
 \subsection{Internal forces}
-Thrust baby
+As the quadcopter was modelled as a rigid body (see \cref{rigid-body-motion}) we acknowledge no internal body forces such as shear or torsion. This section deals with the forces that are most convenient to treat in the body-fixed frame, i.e. the thrust developed by the propellers.
+\subsubsection[Thrust]{Thrust  }
 \subsection{Moments}

@@ -21,6 +21,7 @@
 \RequirePackage[utf8]{inputenc}
 \RequirePackage[a4paper,margin=2cm]{geometry}
 \RequirePackage{fancyhdr}
+\RequirePackage{datetime2}
 %\RequirePackage{lastpage}
 %\RequirePackage[french]{babel}
 %\RequirePackage{graphicx, subcaption, setspace, booktabs, url}
@@ -31,13 +32,13 @@
 \RequirePackage{helvet}
 
 \RequirePackage{siunitx}
-
+\RequirePackage{amsmath}
 %\RequirePackage[protrusion=true, expansion=true]{microtype}
 %\RequirePackage{sectsty}
 %\RequirePackage{flafter}
 %\RequirePackage{algorithm}
 
-%\RequirePackage{listings,xcolor, amsmath, amssymb}
+%\RequirePackage{listings,xcolor, amssymb}
 %\RequirePackage{algorithmicx}
 
 \RequirePackage[hidelinks,pdftex,backref,
@@ -48,6 +49,7 @@
 pdfproducer={Latex with hyperref},
 pdfcreator={pdflatex}]{hyperref}
 
+\RequirePackage{cleveref}
 %\graphicspath{ {./images/} }
 
 
@@ -61,6 +63,8 @@ pdfcreator={pdflatex}]{hyperref}
 \def\subsectionautorefname{\S}
 \def\subsubsectionautorefname{\S}
 \def\algorithmautorefname{Algorithm}
+\renewcommand{\ref}[1]{\cref{#1}}
+
 
 % Counter formatting
 \renewcommand\theenumi{\arabic{enumi}}
@@ -92,7 +96,7 @@ pdfcreator={pdflatex}]{hyperref}
 		{\footnotesize #2}\\
 		{\small #3}\\
 		\vspace*{\baselineskip}
-		{\today}
+		{\normalsize \DTMtoday}
 	\end{titlepage}
 	\clearpage
 	\thispagestyle{body}
