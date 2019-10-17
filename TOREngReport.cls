@@ -33,11 +33,12 @@
 
 \RequirePackage{siunitx}
 \RequirePackage{amsmath}
+\RequirePackage{mathtools}
 %\RequirePackage[protrusion=true, expansion=true]{microtype}
 %\RequirePackage{sectsty}
 %\RequirePackage{flafter}
 %\RequirePackage{algorithm}
-
+\RequirePackage{booktabs}
 %\RequirePackage{listings,xcolor, amssymb}
 %\RequirePackage{algorithmicx}
 
@@ -71,6 +72,26 @@ pdfcreator={pdflatex}]{hyperref}
 \renewcommand\theenumii{\alph{enumii}}
 \renewcommand\theenumiii{\roman{enumiii}}
 
+% MATHS BITS
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}%
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}%
+
+% Frames
+\DeclareRobustCommand*{\ora}{\overrightarrow}
+\newcommand{\Frame}[1]{$\ora{E}$\textsuperscript{#1}}
+\newcommand{\mFrame}[1]{\ora{E}^{#1}}
+\newcommand{\axis}[2]{\Frame{#1}\textsubscript{#2}}
+\newcommand{\maxis}[2]{\mFrame{#1}_{#2}}
+
+% Vectors
+\newcommand{\tvec}[1]{$\ora{#1}$}
+\newcommand{\mvec}[1]{\ora#1}
+\newcommand{\colvec}[1]{\underline{#1}}
+
+% Matrices
+\newcommand{\mat}[1]{\textbf{#1}}
+\newcommand{\sqmat}[1]{\underline{\underline{#1}}}
+
 %-------------------------------------------------------------------------------
 % HEADER & FOOTER
 %-------------------------------------------------------------------------------
@@ -99,7 +120,7 @@ pdfcreator={pdflatex}]{hyperref}
 		{\normalsize \DTMtoday}
 	\end{titlepage}
 	\clearpage
-	\thispagestyle{body}
+	\pagestyle{body}
 	\pagenumbering{roman}
 }
 

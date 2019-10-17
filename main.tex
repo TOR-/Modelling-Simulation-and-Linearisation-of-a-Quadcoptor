@@ -6,6 +6,8 @@
 %institution='UCD School of Engineering'
 ]{TOREngReport}
 
+\usepackage{blkarray}
+
 \include{src/macros/notation}
 
 \date{October 2019}
@@ -26,6 +28,19 @@
 \newpage
 \section{Introduction}                  % TODO
 Blah blah blah about quadcopters
+\newcommand{\mLabel}[1]{\mbox{$\scriptstyle{#1}$}}
+\[
+\begin{blockarray}{cl}
+\begin{block}{[c]l}
+ 1 & \mbox{$\scriptstyle{R_1}$} \\
+ 2 & \mbox{$\scriptstyle{R_2}$} \\
+ \end{block}
+\end{blockarray}\\
+\begin{bmatrix}{ccl}
+1 & & \mLabel{R_1} \\
+2 & & \mLabel{R_2} \\
+\end{bmatrix}
+\]
 
 \include{src/theory}
 \include{src/forcesmoments}

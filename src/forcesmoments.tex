@@ -1,3 +1,4 @@
+
 \section{Forces and Moments}
 To model how the quadcopter interacts with its environment, we have derived the forces and moments that act upon it from first principles. The split of the forces into internal and external is a purely conceptual one.
 \subsection{External forces}
@@ -17,7 +18,7 @@ m\,g\,\sin(\theta)\\-\,m\,g\,\sin(\phi)\cos(\theta)\\-\,m\,g\,\cos(\phi)\cos(\th
 \si{\metre\per\second\squared}
 $$
 \subsubsection{Drag $\vec{F}_d$}
-The force of air friction or drag was modelled as an opposing force to the given direction of motion. The simplifications involved were: taking the density of air to be a constant value, irrespective of temperature and altitude; using a model that doesn't take into account the actual airflow over the drone; disregarding any turbulence caused by the propellers. The formula is as follows~:
+The force of air friction or drag was modelled as an opposing force to the given direction of motion. The simplifications involved were: taking the density of air to be a constant value, irrespective of temperature and altitude; using a model that doesn't take into account the actual airflow over the drone; disregarding any turbulence caused by the rotors. The formula is as follows~:
 \begin{equation}
 \label{eqn:drag}
 \vec{F}_d = \frac{1}{2}\:C_d\:\rho_{air}\:u^2\:\Delta_f
@@ -27,6 +28,103 @@ The force of air friction or drag was modelled as an opposing force to the given
 The frontal area for \cref{eqn:drag} was established by modelling the quadcopter as a box translating and rotating through space.
 % TODO put in more about the box model, mention bff
 \subsection{Internal forces}
-As the quadcopter was modelled as a rigid body (see \cref{rigid-body-motion}) we acknowledge no internal body forces such as shear or torsion. This section deals with the forces that are most convenient to treat in the body-fixed frame, i.e. the thrust developed by the propellers.
-\subsubsection[Thrust]{Thrust  }
+As the quadcopter was modelled as a rigid body (see \cref{rigid-body-motion}) we acknowledge no internal body forces such as shear or torsion. This section deals with the forces that are most convenient to treat in the body-fixed frame, i.e. the thrust and torques due to the rotors.
+\subsubsection[Thrust]{Thrust  \tvec{T}}
+Each rotor produces a thrust perpendicular to the \axis{b}{1}-\axis{b}{2} plane.
+\begin{align*}
+\mvec{T} &\propto \dot\phi_r\\
+\dot{\phi}_r &\propto \overline{I}_r
+\end{align*}
+, where $\dot{\phi}_r$ is the rotation speed of the rotor and $\overline{I}_r$ is the mean current of the rotor.
+
+\subsubsection[Rotor torque]{Rotor torque}
+
 \subsection{Moments}
+
+\subsection{Rotational}
+\begin{align*}
+\colvec{M}^b_{ext}\;&=\;
+	\frac{d}{dt}\left( \mat{J}\,\colvec{\omega}^b\:+\:\mat{J}_r\,\left(\Sigma^4_{i\,=\,1}\,\phi_{r_i}\,\maxis{b}{3}\right)\:\colvec{\omega}^b\right)\:
+		\times\:\left[ \mat{J}\,\colvec{\omega}^b\:+\:\mat{J}_r\,\left(\Sigma^4_{i\,=\,1}\,\phi_{r_i}\,\right)\maxis{b}{3}\right]\\
+			&=\;\mat{J}\,\colvec{\dot\omega}^b\:+\:\colvec{\omega}^b\:\times\:\mat{J}\,\colvec{\omega}^b\\
+			&=\;\begin{bmatrix*}I_{xx} & 0 & 0\\0 & I_{yy} & 0\\0 & 0 & I_{zz}\end{bmatrix*}\,
+			\begin{bmatrix*}\dot{p}\\\dot{q}\\\dot{r}\end{bmatrix*}\:+\:
+			\begin{bmatrix*}p\\q\\r\end{bmatrix*}\:\times\:
+			\begin{bmatrix*}I_{xx} & 0 & 0\\0 & I_{yy} & 0\\0 & 0 & I_{zz}\end{bmatrix*}\,
+			\begin{bmatrix*}p\\q\\r\end{bmatrix*}
+			\\
+			&=\;
+			\begin{bmatrix}I_{xx}\,\dot{p}\\I_{yy}\,\dot{q}\\I_{zz}\,\dot{r}\end{bmatrix}\:+\:
+			\begin{bmatrix} 
+				-I_{yy}\,q\,r~+~I_{zz}\,q\,r\\
+				 I_{xx}\,p\,r~-~I_{zz}\,p\,r\\
+				-I_{xx}\,p\,q~+~I_{yy}\,p\,q
+			\end{bmatrix}\\
+			\begin{bmatrix}M_1\\M_2\\M_3\end{bmatrix}
+			\;&=\;\colvec{M}^b_{ext}
+\end{align*}
+\subsection{Translational}
+\begin{align*}
+	\colvec{F}^b_{ext}\;&=\;m\,\left(\frac{d}{dt}\colvec{v}^b_{com}\:+\:\colvec{\omega}^b\,\times\,\colvec{v}^b_{com}\right)\;,\,
+	\colvec{\omega}^b\,\times\,\colvec{v}^b_{com}\;=\;\begin{bmatrix*}p\\q\\r\end{bmatrix*}\,\times\,\begin{bmatrix*}u\\v\\w\end{bmatrix*}\\
+	&=\;m\,\left(\begin{bmatrix*}\dot{u}\\\dot{v}\\\dot{w}\end{bmatrix*}\:+\:\begin{bmatrix*}q\,w\:-\:r\,v\\r\,u\:-\:p\,w\\p\,v\:=\:q\,u\end{bmatrix*}\right)\\
+\end{align*}
+
+\begin{align*}
+	\begin{bmatrix}\dot{u}\\\dot{v}\\\dot{w}\end{bmatrix}\;=\;\colvec{F}^b_{ext}\cdot\frac{1}{m}\:-\:\begin{bmatrix*}q\,w\:-\:r\,v\\r\,u\:-\:p\,w\\p\,v\:=\:q\,u\end{bmatrix*}
+\end{align*}
+
+\begin{align}
+	\colvec{F}_{ext}\;&=\;\colvec{F}_{d}\:+\:\colvec{T}\:+\:\colvec{F}_{g}\;=\;m\,\colvec{\dot{v}}^b_{com}
+\end{align}
+
+\begin{align}
+	\colvec{F}_{g}^{b}\;&=\;\mat{Q}\,\begin{bmatrix}0\\0\\F_{g}\end{bmatrix}\;=\;
+	\begin{bmatrix}m\,g\,\sin(\theta)\\
+	-\,m\,g\,\sin(\phi)\cos(\theta)\\
+	-\,m\,g\,\cos(\phi)\cos(\theta)
+	\end{bmatrix}\\
+	\colvec{F}_{d}^{b}\;&=\;\begin{bmatrix}
+	-\frac{1}{2}C_d\rho_{air}\Delta_{eff}\cdot u\,\abs{u}\\0\\
+	-\frac{1}{2}C_d\rho_{air}\Delta_{eff}\cdot w\,\abs{w}\end{bmatrix}
+\end{align}
+
+\subsection{Equations of Motion}
+State vector \state
+\[
+\dot{\mstate} \coloneqq\begin{bmatrix}
+u\\\dot{u}\\v\\\dot{v}\\w\\\dot{w}\\
+p\\\dot{p}\\q\\\dot{q}\\r\\\dot{r}\\
+\cmidrule(lr){1-1}
+\phi\\\dot{\phi}\\\theta\\\dot{\theta}\\\psi\\\dot{\psi}
+\end{bmatrix}=\begin{blockarray}{cl}
+\begin{block}{[c]l}
+u&\\\left(\colvec{F}_{g_x}^b+\colvec{F}_{d_x}^b\right)\cdot\frac{1}{m}+rv-qw&\\
+v&\\\left(\colvec{F}_{g_y}^b+\colvec{F}_{d_y}^b\right)\cdot\frac{1}{m}+pw-ru&\\
+w&\\\left(\colvec{T}^b_z+\colvec{F}_{g_z}^b+\colvec{F}_{d_z}^b\right)\cdot\frac{1}{m}+qu-pv&\\
+p&\\\frac{1}{I_{xx}}\left(M_1+(I_{yy}-I_{zz})\right)qr&\mLabel{fartbags}\\
+q&\\\frac{1}{I_{yy}}\left(M_2+\left(I_{zz}-I_{xx}\right)\right)pr&\\
+r&\\\frac{1}{I_{zz}}\left(M_3+\left(I_{xx}-I_{yy}\right)\right)pq&\\
+\cmidrule(lr){1-1}
+\phi&\\p+\left(\sin(\phi)q+\cos(\phi)r\right)\tan(\theta)&\\
+\theta&\\\cos(\phi)q-\sin(\phi)r&\\
+\psi&\\\sec{\theta}\left(\sin(\phi)q+\cos(\phi)r\right)&\\
+\end{block}
+\end{blockarray}
+\]
+\begin{align}
+\\\xRightarrow[\text{simplifications}]{\text{Applying}}
+\begin{bmatrix}
+u\\\left(mg\sin(\theta) -\frac{1}{2}C_d\rho_{air}\Delta_{eff}\cdot u\,\abs{u}\right)\cdot\frac{1}{m}+rv-qw\\
+v\\0\\
+w\\\left(T^b-\,m\,g\,\cos(\phi)\cos(\theta)-\frac{1}{2}C_d\rho_{air}\Delta_{eff}\cdot w\,\abs{w}\right)\cdot\frac{1}{m}+qu-pv\\
+p\\0\\
+q\\\frac{1}{I_{yy}}\left(M_2+\left(I_{zz}-I_{xx}\right)\right)pr\\
+r\\0\\
+\cmidrule(lr){1-1}
+\phi\\p+\left(\sin(\phi)q+\cos(\phi)r\right)\tan(\theta)\\
+\theta\\\cos(\phi)q-\sin(\phi)r\\
+\psi\\\sec{\theta}\left(\sin(\phi)q+\cos(\phi)r\right)
+\end{bmatrix}
+\end{align}
+
