@@ -33,6 +33,7 @@
 
 \RequirePackage{siunitx}
 \RequirePackage{amsmath}
+\RequirePackage{amssymb}
 \RequirePackage{mathtools}
 %\RequirePackage[protrusion=true, expansion=true]{microtype}
 %\RequirePackage{sectsty}
@@ -92,6 +93,7 @@ pdfcreator={pdflatex}]{hyperref}
 \newcommand{\mat}[1]{\textbf{#1}}
 \newcommand{\sqmat}[1]{\underline{\underline{#1}}}
 
+\newcommand{\mLabel}[1]{\mbox{$\textstyle{#1}$}}
 %-------------------------------------------------------------------------------
 % HEADER & FOOTER
 %-------------------------------------------------------------------------------
