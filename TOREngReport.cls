@@ -35,6 +35,8 @@
 \RequirePackage{amsmath}
 \RequirePackage{amssymb}
 \RequirePackage{mathtools}
+\RequirePackage{tikz}
+\RequirePackage{tikz-3dplot}
 %\RequirePackage[protrusion=true, expansion=true]{microtype}
 %\RequirePackage{sectsty}
 %\RequirePackage{flafter}
