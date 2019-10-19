@@ -7,16 +7,20 @@
 \subsection{Configuration}
 Diagram of the configuration
 
-\subsection{Space State Realisation}
-The objective of this task is to derive a linearised dynamic system describing the motion of a quadcopter in the Choi/Ahn configuration. It is therefore logical to develop a space-state representation of the system. There are 12 state quantities of interest in the given configuration; namely the linear and angular velocities of the inertial reference frame and the body-fixed frame respectively. The state vector is defined by these 12 quantities and their respective time derivatives. Given (((below/to the left/to the right???))) is the state vector.
+\subsection{Space-State Realisation}
+The objective of this task is to derive a linearised dynamic system describing the motion of a quadcopter in the Choi/Ahn configuration. It is logical to develop a space-state representation of the system. There are 12 state quantities of interest in the given configuration; namely x, y, z coordinates to describe the drone's position in the inertial frame, linear and angular velocities in the body-fixed frame, and Euler angles. The state vector is defined by these 12 quantities and the state derivative by their respective time derivatives. Given (((BELOW/TO THE LEFT/ TO THE RIGHT???))) is the state vector and its derivative.
 
-Little description for the matrix: Quantities in the top half are bf-frame, bottom are inertial - separated by line
+x = [u v w p q r | x y z phi theta psi]';
+xdot = [ud vd wd pd qd rd | xd yd zd phid thetad psid]';
 
-Cian to Cian: put in a picture of the full state matrix
-\subsubsection{Simplifications}
-The scope of the task does not require the drone's position and velocity in inertial space, but rather the the body-fixed velocities, angular velocities, and Euler angles. Furthermore, analysis of the system configuration reveals that linear motion is limited to the E1 and E3 direction, and angular only about the E2 axis. See fig 1.wallawalla .
+LITTLE DESCRIPTION FOR THE MATRIX - TOP HALF IS BODY FIXED, BOTTOM HALF IS INERTIAL
 
-Accounting for these simplifications results in a simplified state vector. For the scope of this task, we have only derived equations of motion for the following state variables.
+CIAN TO CIAN: PUT IN A FULL PICTURE OF THE STATE MATRIX
+
+Our first task is to derive a general non-linear space-state representation of the configuration of the form:
+
+GIVE NON-LINEAR STATE SPACE EQUATIONS
+
 \subsubsection[Inertial frame]{Inertial frame \Frame{i}} % Necessary?
 \subsubsection[Body-fixed frame]{Body-fixed frame \Frame{b}}
 Axes \axis{b}{1}, \axis{b}{2} and \axis{b}{3}.
