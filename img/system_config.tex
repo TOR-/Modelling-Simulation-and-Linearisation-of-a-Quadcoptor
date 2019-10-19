@@ -5,6 +5,7 @@
 \def\thetasep{45}
 \def\dronew{3}
 \def\droneh{0.5}
+\def\droned{0.5}
 \begin{tikzpicture}[scale=1]
 \coordinate (origin) at (0,0);
 \coordinate (com) at (\thetasep:\baxissep);
@@ -20,7 +21,7 @@
 
 % PITCH ANGLE
 \draw [dashed] (com) -- (com -| origin);
-\draw [->,dashed] (com) ++(-\dronew/3,0) coordinate(parcs)  arc(180:180-\thetayy:\dronew/3)  coordinate (parce);
+\draw [-stealth,dashed] (com) ++(-\dronew/3,0) coordinate(parcs)  arc(180:180-\thetayy:\dronew/3)  coordinate (parce);
 \path (com) -- (parcs) node[pos=0.5,anchor=south east] {$\scriptstyle\theta$};
 \draw [dashed] (com) -- (parce);
 \end{tikzpicture}
