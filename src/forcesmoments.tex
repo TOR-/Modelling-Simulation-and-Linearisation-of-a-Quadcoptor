@@ -1,8 +1,18 @@
 
-\section{Forces and Moments}
+\section{Translational Motion}
 
+Under the assumptions made in \cref{s:modassumptions} we began to derive a set of equations describing the motion of the drone. Newton's second law asserts that relative to an inertial frame, the external force acting upon a body is the rate of change of the momentum. The external forces, relative to the body fixed frame of our drone are given by:
+\begin{align*}\label{eq:newtonsecond}
+	\colvec{F}^b_{ext}\;&=\;m\,\left(\frac{d}{dt}\colvec{v}^b_{com}\:+\:\colvec{\omega}^b\,\times\,\colvec{v}^b_{com}\right)\;,\,
+	\colvec{\omega}^b\,\times\,\colvec{v}^b_{com}\;=\;\begin{bmatrix*}p\\q\\r\end{bmatrix*}\,\times\,\begin{bmatrix*}u\\v\\w\end{bmatrix*}\\
+\end{align*}
+Re-arranging, we can solve for the translational accelerations relative to the body-fixed frame.
+\begin{align*}
+	\begin{bmatrix}\dot{u}\\\dot{v}\\\dot{w}\end{bmatrix}\;=\;\colvec{F}^b_{ext}\cdot\frac{1}{m}\:-\:\begin{bmatrix*}q\,w\:-\:r\,v\\r\,u\:-\:p\,w\\p\,v\:=\:q\,u\end{bmatrix*}
+\end{align*}
 
-To model how the quadcopter interacts with its environment, we have derived the forces and moments that act upon it from first principles. The split of the forces into internal and external is a purely conceptual one.
+The next
+
 \subsection{External forces}
 The quadcopter chiefly experiences two external forces: the force of gravitational attraction between itself and the Earth and the retarding force of air friction or drag.
 \subsubsection{Gravity $\vec{F}_g$}
