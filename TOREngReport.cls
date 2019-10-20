@@ -85,6 +85,7 @@ pdfcreator={pdflatex}]{hyperref}
 \newcommand{\maxis}[2]{\mFrame{#1}_{#2}}
 
 % Vectors
+\renewcommand{\vec}[1]{\textbf{\textit{#1}}}
 \newcommand{\tvec}[1]{$\ora{#1}$}
 \newcommand{\mvec}[1]{\ora#1}
 \newcommand{\colvec}[1]{\underline{#1}}

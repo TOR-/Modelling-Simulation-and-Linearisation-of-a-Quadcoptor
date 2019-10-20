@@ -11,26 +11,27 @@ Re-arranging, we can solve for the translational accelerations relative to the b
 	\begin{bmatrix}\dot{u}\\\dot{v}\\\dot{w}\end{bmatrix}\;=\;\colvec{F}^b_{ext}\cdot\frac{1}{m}\:-\:\begin{bmatrix*}q\,w\:-\:r\,v\\r\,u\:-\:p\,w\\p\,v\:=\:q\,u\end{bmatrix*}
 \end{align*}
 
-The next
+Quantifying the external forces relative to the body-fixed frame will reveal a system of equations for translational motion.
 
 \subsection{External forces}
-The quadcopter chiefly experiences two external forces: the force of gravitational attraction between itself and the Earth and the retarding force of air friction or drag.
+Our quadcopter model chiefly experiences two external forces: the force of gravitational attraction between itself and the Earth and the retarding force of air friction or drag.
 \subsubsection{Gravity $\vec{F}_g$}
-The simplifications used in the derivation of the gravitational force are as follows: gravity was taken to have a constant magnitude of  \SI{9.81}{\metre\per\second\squared} irrespective of altitude.
+In our model, gravitational acceleration was taken to be a constant irrespective of altitude. This is not realistic, but a justified in that within the region of operation, gravitational acceleration is very close to constant. We are assuming very small changes in altitude SEE APPENDIX .
+Gravitational force in the body-fixed frame was found by mapping a column vector representation in the inertial frame with QQQQQQQQQ  \cref{s:mapping}.
 \\
-The gravitational force in the body-fixed frame was obtained as follows:
 $$
 \colvec{F}_g^b = \mat{Q}\cdot\colvec{F}_g^i = \begin{bmatrix}
 m\,g\,\sin(\theta)\\-\,m\,g\,\sin(\phi)\cos(\theta)\\-\,m\,g\,\cos(\phi)\cos(\theta)
 \end{bmatrix}
 \mathrm{, where }\:
-\colvec{F}_g^i = \begin{bmatrix}
+\colvec{F}_g^i = m\cdot\begin{bmatrix}
 0\\0\\9.81
 \end{bmatrix}
 \si{\metre\per\second\squared}
 $$
+
 \subsubsection{Drag $\vec{F}_d$}
-The force of air friction or drag was modelled as an opposing force to the given direction of motion. The simplifications involved were: taking the density of air to be a constant value, irrespective of temperature and altitude; using a model that doesn't take into account the actual airflow over the drone; disregarding any turbulence caused by the rotors. The formula is as follows~:
+The force of air friction or drag was modelled as an opposing force to the given direction of motion. The density of air was to be a constant value, irrespective of temperature and altitude. Again we refer to the assumption of negligible changes in altitude and no fluctuation in temperature. The velocity of the air is taken to be the translational velocity of the rotors in the direction perpendicular to the affected area. The formula is as follows~:
 \begin{equation}
 \label{eqn:drag}
 \vec{F}_d = \frac{1}{2}\:C_d\:\rho_{air}\:u^2\:\Delta_f
