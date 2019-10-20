@@ -44,7 +44,7 @@
 \draw[thick,->] (0,0,0) -- (0,0,5) node[anchor=south]{\axis{i}{3}};
 
 %draw a vector from origin to point (P) 
-\draw[-stealth,color=red] (O) -- (P);
+%\draw[-stealth,color=red] (O) -- (P);
 
 %draw projection on xy plane, and a connecting line
 %\draw[dashed, color=red] (O) -- (Pxy);
@@ -82,8 +82,8 @@
 \draw [fill=green] (-\dronew/2,-\droned/2) rectangle (\dronew/2,\droned/2) ;
 \end{scope}
 \begin{scope}[tdplot_rotated_coords,canvas is plane={O(0,0,0)x(0,1,0)y(0,0,1)},transform shape]
-\draw [-stealth,ultra thick,blue]  (-\dronew/2+\droned/2,0) -- ++(0,\thrh) node [above] {$T_2$};
-\draw [-stealth,ultra thick,blue]  (\dronew/2-\droned/2,0) -- ++(0,\thrh) node [above] {$T_4$};
+\draw [-stealth,ultra thick,blue]  (-\dronew/2+\droned/2,0) -- ++(0,\thrh) node [above] {\textbf{$T_2$}};
+\draw [-stealth,ultra thick,blue]  (\dronew/2-\droned/2,0) -- ++(0,\thrh) node [above] {\textbf{$T_4$}};
 \end{scope}
 \begin{scope}[tdplot_rotated_coords,canvas is plane={O(0,0,0)x(1,0,0)y(0,0,1)},transform shape]
 \draw [-stealth,ultra thick,blue]  (-\dronew/2+\droned/2,0) -- ++(0,\thrh) node [above] {\textbf{$T_3$}};

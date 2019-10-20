@@ -10,14 +10,14 @@
 \coordinate (origin) at (0,0);
 \coordinate (com) at (\thetasep:\baxissep);
 %DRONE
-\node [draw, fill, color=gray, thin, shape=rectangle, minimum width=\dronew cm, minimum height=\droneh cm, anchor=center, rotate around={-\thetayy:(com)}] at (com) {};
+\node [draw, color=gray, shape=rectangle, minimum width=\dronew cm, minimum height=\droneh cm, anchor=center, rotate around={-\thetayy:(com)}] at (com) {};
 
 % Ei
 \draw [->,thick] (origin) -- (0,5) node (ei3) [above] {\axis{i}{3}};
 \draw [->,thick] (origin) -- ++(5,0) node (ei1) [right] {\axis{i}{1}};
 % Eb
-\draw [->] (com) -- +(90-\thetayy:\baxislen) node (eb3) [above] {\axis{b}{3}};
-\draw [->] (com) -- +(-\thetayy:\baxislen) node (eb1) [right] {\axis{b}{1}};
+\draw [->,thick] (com) -- +(90-\thetayy:\baxislen) node (eb3) [above] {\axis{b}{3}};
+\draw [->,thick] (com) -- +(-\thetayy:\baxislen) node (eb1) [right] {\axis{b}{1}};
 
 % PITCH ANGLE
 \draw [dashed] (com) -- (com -| origin);
