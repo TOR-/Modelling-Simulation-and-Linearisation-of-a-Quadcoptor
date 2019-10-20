@@ -13,7 +13,7 @@
 }
 %\ExecuteOptions{10pt}
 \ProcessOptions*
-\LoadClass{article}
+\LoadClass[twocolumn]{article}
 %\renewcommand{\normalsize}{\fontsize{9}{10}\selectfont}
 \setlength{\textwidth}{280mm}
 \setlength{\textheight}{193mm}
@@ -28,7 +28,7 @@
 \RequirePackage{natbib}
 %\RequirePackage{wrapfig}
 %\RequirePackage[T1]{fontenc}
-%\RequirePackage[font=small, labelfont=bf]{caption}
+\RequirePackage[font=small, labelfont=bf]{caption}
 \RequirePackage{helvet}
 
 \RequirePackage{siunitx}
@@ -44,6 +44,7 @@
 \RequirePackage{booktabs}
 %\RequirePackage{listings,xcolor, amssymb}
 %\RequirePackage{algorithmicx}
+\RequirePackage[toc,page]{appendix}
 
 \RequirePackage[hidelinks,pdftex,backref,
 %pdfauthor=\@authors,
@@ -56,7 +57,9 @@ pdfcreator={pdflatex}]{hyperref}
 \RequirePackage{cleveref}
 %\graphicspath{ {./images/} }
 
-
+\DeclareCaptionType{captioneq}[][List of equations]
+\captionsetup[captioneq]{labelformat=simple}
+\renewcommand{\captioneqname}{Equation}
 \newcommand{\HRule}[1]{\rule{\linewidth}{#1}}
 %\onehalfspacing
 \setcounter{tocdepth}{5}
@@ -93,7 +96,7 @@ pdfcreator={pdflatex}]{hyperref}
 \newcommand{\colvec}[1]{\underline{#1}}
 
 % Matrices
-\newcommand{\mat}[1]{\textbf{#1}}
+\newcommand{\mat}[1]{\textbf{$\mathcal{#1}$}}
 \newcommand{\sqmat}[1]{\underline{\underline{#1}}}
 
 \newcommand{\mLabel}[1]{\mbox{$\textstyle{#1}$}}

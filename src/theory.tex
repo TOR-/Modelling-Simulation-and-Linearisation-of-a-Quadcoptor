@@ -1,36 +1,57 @@
 \section{Theoretical Background}
-\input{img/system_config}
 
-\input{img/thrust_def}
+
+
 \subsection{Frames of reference}
 
 \subsection{Notation} %Should this be an appendix/epilogue/monologue/preview????
 -> Define mapping from vectors to column matrices
-\subsection{Configuration}
-Diagram of the configuration
 
 \subsection{Analysis of the System Configuration}\label{s:analysis}
-\label{fig:sysconfig}
-\label{fig:choiahnconfig}
-In order to simplify the assignment, our initial approach was to methodically analyse the configuration detailed in the task.
-\cref{fig:choiahnconfig} depicts a system in the Choi/Ahn configuration. The system has 6 degrees of freedom. Our task however, requires a configuration with only 3 degrees of freedom, namely movement in E1 the body-fixed frame, movement in E3 of the body-fixed frame, and pitch movement.
-Assuming that under initial conditions, the body of the drone and its axes are aligned with the axes of the inertial frame, the requirements for a 3-dimensional representation of translational movement can be reduced to a 2-dimensional one. One could argue that even if the axes are aligned under starting conditions a rotation about the E1 or E3 axes of the body-fixed frame would rotate the vehicle into a 3-dimensional space. Fortunately for us, yaw and roll are not considered in this implementation.
-\cref{fig:sysconfig} depicts the system configuration for the given task. The vehicle can move anywhere inside this two dimensional space.
+\begin{figure*}[tb]
+	\centering
+	\input{img/system_config}
+	\caption{System configuration}
+	\label{fig:sysconfig}
+\end{figure*}
+\begin{figure*}[tb]
+	\centering
+	\input{img/choi_ahn_config}
+	\caption{System in Choi Ahn configuration}
+	\label{fig:choiahnconfig}
+\end{figure*}
+In order to simplify the assignment we first analysed the configuration detailed in the task.
 
-\subsection{Mapping from Inertial to Body-Fixed Reference Frame}\label{s:mapping}
-\subsection{Model Assumptions}\label{s:modassumptions}
+\Cref{fig:choiahnconfig} depicts a system in the Choi/Ahn configuration. The system has 6 degrees of freedom. Our task however, requires a configuration with only 3 degrees of freedom, namely movement in the \axis{b}{1} and \axis{b}{3} axes and pitch|angular rotation about the \axis{b}{2} axis.
+Assuming that under initial conditions, the body of the drone and its axes are aligned with the axes of the inertial frame, the requirements for a 3-dimensional representation of translational movement can be reduced to a 2-dimensional one. Even if the axes are aligned under starting conditions a rotation about the \axis{b}{1} or \axis{b}{3} axes (roll and yaw respectively or $\phi$ and $\psi$) would rotate the vehicle in a 3-dimensional space; in this instance, this will not be considered as the arising of torques about the \axis{b}{1} or \axis{b}{3} axes is not possible given the problem description.
+
+\Cref{fig:sysconfig} depicts the configuration of the reduced system for the given task. The vehicle can move anywhere inside this two dimensional space.
+
+\subsection{Mapping from Inertial to Body-Fixed Reference Frame}
+%% TIARNACH: Moved this to an appendix
+%\subsection{Model Assumptions}
 
 \subsection{State-Space Realisation}
-The objective of this task is to derive a linearised dynamic system describing the motion of a quadcopter in the Choi/Ahn configuration. Our approach to the task was to first systematically develop a non-linear state-space system. There are 12 state quantities in the Choi/Ahn configuration; namely x, y, z coordinates to describe the drone's position in the inertial frame, linear and angular velocities in the body-fixed frame, and Euler angles. The state vector is defined by these 12 quantities and the state derivative by the time derivatives of these 12 quantities. Given (((BELOW/TO THE LEFT/ TO THE RIGHT???))) is the state vector x(t) and its derivative xdot(t).
+The objective of this task is to derive a linearised dynamic system describing the motion of a quadcopter in the Choi/Ahn configuration. Our approach to the task began with developing a non-linear state-space system. There are 12 state quantities in the Choi/Ahn configuration; namely x, y, z coordinates to describe the drone's position in the inertial frame, linear and angular velocities in the body-fixed frame, and Euler angles. The state vector (\cref{eqn:state def}) is defined by these 12 quantities and the state derivative (\cref{eqn:ddt state def}) by the time derivatives of these 12 quantities.
+\begin{captioneq}[htb]
+	\begin{equation}\label{eqn:state def}
+\mstate=\begin{bmatrix}u\\v\\w\\p\\q\\r\\\cmidrule(lr){1-1 } x\\y\\z\\\phi\\\theta\\\psi\end{bmatrix}
+\end{equation}
+\caption{State vector}
+\end{captioneq}
+\begin{captioneq}[htb]
+\begin{equation}\label{eqn:ddt state def}
+\mdstate=\begin{bmatrix}\dot{u}\\\dot{v}\\\dot{w}\\\dot{p}\\\dot{q}\\\dot{r}\\\cmidrule(lr){1-1} \dot{x}\\\dot{y}\\\dot{z}\\\dot{\phi}\\\dot{\theta}\\\dot{\psi}\end{bmatrix}
+\end{equation}
+\caption{State derivative}
+\end{captioneq}
 
-x = [u v w p q r | x y z phi theta psi]';
-xdot = [ud vd wd pd qd rd | xd yd zd phid thetad psid]';
 
 LITTLE DESCRIPTION FOR THE MATRIX - TOP HALF IS BODY FIXED, BOTTOM HALF IS INERTIAL
 
 CIAN TO CIAN: PUT IN A FULL PICTURE OF THE STATE MATRIX
 
-Applying the 2-dimensional model derived in \cref{s:analysis} we can reduce the state matrix to the applicable quantities. Given (((BELOW/TO THE RIGHT???))) is the reduced state vector and its time derivative.
+Applying the 2-dimensional model derived in \cref{s:analysis} we can reduce the state matrix to the applicable quantities. \Cref{eqn:state reduced} is the reduced state vector and its time derivative.
 
 REDUCED STATE VECTOR AND STATE DERIVATIVE
 

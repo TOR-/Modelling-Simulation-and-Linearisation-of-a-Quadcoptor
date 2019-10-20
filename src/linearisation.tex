@@ -1,7 +1,84 @@
 \section{Linearisation}
-Procedure of linearisation adopted. 
+Find operating point for $\vartheta = 2^\circ,\:T=T_i$
+
+\begin{equation*}
+	\dot{u} = \left(mg\sin(\vartheta)+\alpha\cdot\abs{u}u\right)
+\end{equation*}
+Show $\dot{u}=^!0$ for given parameters.
+
+\begin{align*}
+0&=\left(mg\sin\left(2^\circ\right) -\alpha \cdot\abs{u}u\right)\\
+u\abs{u}&=\frac{mg\sin(2^\circ)}{\alpha}\\
+u^4&=\left(\frac{mg\sin(2^\circ)}{\alpha}\right)^2\\
+\iff{} u&=\pm \sqrt{\frac{mg\sin(2^\circ)}{\alpha}}
+\end{align*}
+
+%%TODO ?
+However, taking into consideration the nature of drag force, the negative solution is non-sinusoidal (the other acceleration is in a positive direction).
+
+Now $u_o$ and $\vartheta_o$ have been determined as $\sqrt{\frac{mg\sin(2^\circ)}{\alpha}}$ and $2^\circ$ respectively.
+	
+Linearise about $u_o$ and $\vartheta_o$.
+
+\begin{captioneq}[ht]
+\centering
+\begin{align*}
+\frac{d}{dt}\left(u_o+\tilde{u}\right)&=\left(mg\sin(\vartheta_o+\tilde\vartheta)-\alpha\underbrace{\abs{u_o+\tilde{u}}(u_o+\tilde{u})}_{u_o^2+2u_o\tilde{u}+\tilde{u}^2}\right)\frac{1}{m}\\
+\frac{d}{dt}u_o&=0\\
+\Rightarrow\frac{d}{dt}\tilde{u}&=\left\{
+	mg\left(
+		\underbrace{\sin(\vartheta_o)}_{0.035\ll 1}
+		+\underbrace{\cos(\vartheta_o)}_{0.999\cong 1}
+		\right)	
+	(\vartheta_o+\tilde\vartheta)
+	-\alpha\left(u_o^2+2u_o\tilde{u}+\underbrace{\tilde{u}^2}_{\cong 0}\right)
+\right\}\frac{1}{m}\\
+&=\frac{1}{m}\left(mg(\vartheta_o+\tilde{\vartheta}) - \alpha(u_o^2+2u_o\tilde{u})\right)
+\end{align*}
+\end{captioneq}
+
+Applying a second order Taylor expansion around the operating point of $\vartheta_o = 2^\circ$ yields the following linearisation of each non-linear function in the state vector (see \cref{s:taylor}). This is a local model whose validity disappears with more than a small perturbation about $\vartheta_o$.
+
+\begin{align*}
+	\sin(\vartheta_o+\tilde{\vartheta}) &\approx \underbrace{\sin(\vartheta_o)}_{\approx 0}+\underbrace{\cos(\vartheta_o)}_{\approx 1}(\tilde\vartheta),\:\vartheta_o\cong 0\\
+	&\approx \tilde{\vartheta}\\
+	\cos(\vartheta_o+\tilde{\vartheta}) &\approx \underbrace{\cos(\vartheta_o)}_{\approx 1}-\underbrace{\sin(\vartheta_o)}_{\approx 1}(\tilde\vartheta)\\
+	&\approx 1
+\end{align*}
+
+We will now apply these linear expansions to our non-linear state-space model.
+%%TODO replace alpha with ``all that drag coefficient shite''
+
+Acceleration in $\dot{u}$
+\begin{align*}
+\frac{d}{dt}(u_o+\tilde{u}) &= \left(mg \sin(\vartheta_o + \tilde{\vartheta}) - \alpha(u_o+\tilde{u})\right)\frac{1}{m}\\
+\Rightarrow\frac{d}{dt}\tilde{u}&=\left(mg\tilde\theta-(\alpha(u_o^2+2u_o\tilde{u}))\right)\frac{1}{m}
+\end{align*}
+
+3.
+\begin{align*}
+\dot{q}=\frac{M_2}{I_{yy}}
+\end{align*}
+
+4.
+\begin{align*}
+\dot\vartheta&=\underbrace{\cos(\phi)}_{=1}q-\underbrace{\sin(\phi)}_{=0}r\\
+\dot\vartheta&=q
+\end{align*}
+
+5.
+\begin{align*}
+\dot{z}&=\begin{bmatrix}-\sin\vartheta&\cos\vartheta\sin\phi&\cos\vartheta\cos\phi\end{bmatrix}
+\begin{bmatrix}u\\v\\w\end{bmatrix}\\
+&\approx -\vartheta u + w\\
+\Rightarrow\frac{d(z + \tilde{z})}{dt} &=-\sin(\vartheta_o+\tilde\vartheta)(u_o+\tilde{u})+\cos(\vartheta_o+\tilde\vartheta)(w_o+\tilde{w})\\
+\Rightarrow\frac{d}{dt}\tilde{z}&=\tilde\vartheta(u_o+\tilde{u})+(w_o+\tilde{w})\\
+\tilde\vartheta(u_o+\tilde{u})&\ll (w_o+\tilde{w})\\
+\Rightarrow\frac{d}{dt}\tilde{z}&=w_o+\tilde{w}
+\end{align*}
+%Procedure of linearisation adopted. 
 %\footnote{Other procedure of linearisation not adopted}
-\subsection{Derivation of linear model}
-\subsection{Simulation results of linear model}
-\subsection{Comparison with non-linear model}
-Percentage error
+%\subsection{Derivation of linear model}
+%\subsection{Simulation results of linear model}
+%\subsection{Comparison with non-linear model}
+%Percentage error

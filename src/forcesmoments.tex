@@ -2,33 +2,37 @@
 \section{Translational Motion}
 
 Under the assumptions made in \cref{s:modassumptions} we began to derive a set of equations describing the motion of the drone. Newton's second law asserts that relative to an inertial frame, the external force acting upon a body is the rate of change of the momentum. The external forces, relative to the body fixed frame of our drone are given by:
-\begin{align*}\label{eq:newtonsecond}
-	\colvec{F}^b_{ext}\;&=\;m\,\left(\frac{d}{dt}\colvec{v}^b_{com}\:+\:\colvec{\omega}^b\,\times\,\colvec{v}^b_{com}\right)\;,\,
+\begin{align}\label{eq:newtonsecond}
+\begin{split}
+	\colvec{F}^b_{ext}\;&=\;m\,\left(\frac{d}{dt}\colvec{v}^b_{com}\:+\:\colvec{\omega}^b\,\times\,\colvec{v}^b_{com}\right)\;\\&,\,
 	\colvec{\omega}^b\,\times\,\colvec{v}^b_{com}\;=\;\begin{bmatrix*}p\\q\\r\end{bmatrix*}\,\times\,\begin{bmatrix*}u\\v\\w\end{bmatrix*}\\
-\end{align*}
+\end{split}
+\end{align}
 Re-arranging, we can solve for the translational accelerations relative to the body-fixed frame.
-\begin{align*}
+\begin{align}
 	\begin{bmatrix}\dot{u}\\\dot{v}\\\dot{w}\end{bmatrix}\;=\;\colvec{F}^b_{ext}\cdot\frac{1}{m}\:-\:\begin{bmatrix*}q\,w\:-\:r\,v\\r\,u\:-\:p\,w\\p\,v\:=\:q\,u\end{bmatrix*}
-\end{align*}
+\end{align}
 
 Quantifying the external forces relative to the body-fixed frame will reveal a system of equations for translational motion.
 
 \subsection{External forces}
 Our quadcopter model chiefly experiences two external forces: the force of gravitational attraction between itself and the Earth and the retarding force of air friction or drag.
 \subsubsection{Gravity $\vec{F}_g$}
-In our model, gravitational acceleration was taken to be a constant irrespective of altitude. This is not realistic, but a justified in that within the region of operation, gravitational acceleration is very close to constant. We are assuming very small changes in altitude SEE APPENDIX .
+In our model, gravitational acceleration was taken to be a constant irrespective of altitude. This is not realistic, but a justified in that within the region of operation, gravitational acceleration is very close to constant. We are assuming very small changes in altitude (see \cref{s:simp g force}).
 Gravitational force in the body-fixed frame was found by mapping a column vector representation in the inertial frame with QQQQQQQQQ  \cref{s:mapping}.
 \\
-$$
-\colvec{F}_g^b = \mat{Q}\cdot\colvec{F}_g^i = \begin{bmatrix}
+
+\begin{align*}
+\colvec{F}_g^b = \mat{Q}\cdot\colvec{F}_g^i = &\begin{bmatrix}
 m\,g\,\sin(\theta)\\-\,m\,g\,\sin(\phi)\cos(\theta)\\-\,m\,g\,\cos(\phi)\cos(\theta)
-\end{bmatrix}
-\mathrm{, where }\:
-\colvec{F}_g^i = m\cdot\begin{bmatrix}
+\end{bmatrix}\\
+\mathrm{ where }\:
+\colvec{F}_g^i = m\cdot&\begin{bmatrix}
 0\\0\\9.81
 \end{bmatrix}
 \si{\metre\per\second\squared}
-$$
+\end{align*}
+
 
 \subsubsection{Drag $\vec{F}_d$}
 The force of air friction or drag was modelled as an opposing force to the given direction of motion. The density of air was to be a constant value, irrespective of temperature and altitude. Again we refer to the assumption of negligible changes in altitude and no fluctuation in temperature. The velocity of the air is taken to be the translational velocity of the rotors in the direction perpendicular to the affected area. The formula is as follows~:
@@ -103,7 +107,8 @@ Each rotor produces a thrust perpendicular to the \axis{b}{1}-\axis{b}{2} plane.
 \end{align}
 
 \subsection{Equations of Motion}
-\[
+\begin{align}
+\label{eqn:state reduced}
 \mstate \coloneqq\begin{bmatrix}
 u\\\dot{u}\\v\\\dot{v}\\w\\\dot{w}\\
 p\\\dot{p}\\q\\\dot{q}\\r\\\dot{r}\\
@@ -123,9 +128,9 @@ r&\\\frac{1}{I_{zz}}\left(M_3+\left(I_{xx}-I_{yy}\right)\right)pq&\mLabel{=0 \be
 \psi&\\\sec{\theta}\left(\sin(\phi)q+\cos(\phi)r\right)&\\
 \end{block}
 \end{blockarray}
-\]
+\end{align}
 \begin{align}
-\\\xRightarrow[\text{simplifications}]{\text{Applying}}
+\xRightarrow[\text{simplifications}]{\text{Applying}}
 \begin{bmatrix}
 u\\\left(mg\sin(\theta) -\frac{1}{2}C_d\rho_{air}\Delta_{eff}\cdot u\,\abs{u}\right)\cdot\frac{1}{m}+rv-qw\\
 v\\0\\
@@ -140,3 +145,13 @@ r\\0\\
 \end{bmatrix}
 \end{align}
 
+\begin{captioneq}[p]
+	\label{s:mapping}
+\begin{align}
+\mat{Q}=\begin{bmatrix}
+\cos(\psi)\cos(\theta) & -\sin(\theta)\cos(\phi)+\cos(\psi)\sin(\theta)\sin(\phi) & \sin(\psi)\sin(\phi)+\cos(\psi)\sin(\theta)\cos(\phi)\\
+\sin(\psi)\cos(\theta) & \cos(\psi)\cos(\phi)+\sin(\psi)\sin(\theta)\sin(\phi) & -\cos(\psi)\sin(\phi)+\sin(psi)\sin(\theta)\cos(\phi)\\
+-\sin(\theta) & \cos(\theta)\sin(\phi) & \cos(\theta)\cos(\phi)
+\end{bmatrix}
+\end{align}
+\end{captioneq}

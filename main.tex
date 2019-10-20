@@ -9,8 +9,8 @@
 \usepackage{blkarray}
 
 \input{src/macros/notation}
-
-\date{October 2019}
+\input{src/constants/dimensions}
+%\date{October 2019}
 
  % TODO better title needed
 \title{Modelling, Linearisation and Simulation of a Quadcopter}
@@ -23,17 +23,20 @@
 \maketitle{\thetitle}{\thesubject}{\theauthors}
 
 \tableofcontents
+\listofcaptioneqs
 
 \pagenumbering{arabic}
-\newpage
-\section{Introduction}                  % TODO
-Blah blah blah about quadcopters
+\clearpage
+
+\include{src/intro}
 
 \include{src/theory}
 \include{src/forcesmoments}
 \include{src/linearisation}
 
 \include{src/conclusion}
+
+\include{src/appendix}
 
 \bibliographystyle{plain}
 \bibliography{bib/references}
