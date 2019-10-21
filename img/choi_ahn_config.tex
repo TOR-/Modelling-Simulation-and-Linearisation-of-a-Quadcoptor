@@ -7,9 +7,9 @@
 \pgfmathsetmacro{\rvec}{\baxissep}
 \pgfmathsetmacro{\thetavec}{45}
 \pgfmathsetmacro{\phivec}{52}
-\def\phib{6}
-\def\thetab{60}
-\def\psib{25}
+\def\phib{0}
+\def\thetab{0}
+\def\psib{0}
 \def\thrh{0.5}
 \usetikzlibrary{3d}
 \makeatletter
@@ -77,16 +77,16 @@
 \tdplotsetrotatedcoordsorigin{(P)}
 
 \begin{scope}[tdplot_rotated_coords,canvas is plane={O(0,0,0)x(1,0,0)y(0,1,0)}]
-\draw [fill=red] (-\droned/2,-\dronew/2) rectangle (\droned/2,\dronew/2);
-\draw [fill=green] (-\dronew/2,-\droned/2) rectangle (\dronew/2,\droned/2) ;
+\draw [fill=white] (-\droned/2,-\dronew/2) rectangle (\droned/2,\dronew/2);
+\draw [fill=white] (-\dronew/2,-\droned/2) rectangle (\dronew/2,\droned/2) ;
 \end{scope}
 \begin{scope}[tdplot_rotated_coords,canvas is plane={O(0,0,0)x(0,1,0)y(0,0,1)},transform shape]
-\draw [-stealth,ultra thick,blue]  (-\dronew/2+\droned/2,0) -- ++(0,\thrh) node [above] {\textbf{$T_2$}};
-\draw [-stealth,ultra thick,blue]  (\dronew/2-\droned/2,0) -- ++(0,\thrh) node [above] {\textbf{$T_4$}};
+\draw [-stealth,ultra thick,blue]  (-\dronew/2+\droned/2,0) -- ++(0,\thrh) node [above,fill=white,inner sep=1pt] {\textbf{$T_2$}};
+\draw [-stealth,ultra thick,blue]  (\dronew/2-\droned/2,0) -- ++(0,\thrh) node [above,fill=white,inner sep=1pt] {\textbf{$T_4$}};
 \end{scope}
-\begin{scope}[tdplot_rotated_coords,canvas is plane={O(0,0,0)x(1,0,0)y(0,0,1)},transform shape]
-\draw [-stealth,ultra thick,blue]  (-\dronew/2+\droned/2,0) -- ++(0,\thrh) node [above] {\textbf{$T_3$}};
-\draw [-stealth,ultra thick,blue]  (\dronew/2-\droned/2,0) -- ++(0,\thrh) node [above] {\textbf{$T_1$}};
+\begin{scope}[tdplot_rotated_coords,canvas is plane={O(0,0,0)x(-1,0,0)y(0,0,1)},transform shape]
+\draw [-stealth,ultra thick,blue]  (-\dronew/2+\droned/2,0) -- ++(0,\thrh) node [above,fill=white,inner sep=1pt] {\textbf{$T_3$}};
+\draw [-stealth,ultra thick,blue]  (\dronew/2-\droned/2,0) -- ++(0,\thrh) node [above,fill=white,inner sep=1pt] {\textbf{$T_1$}};
 \end{scope}
 %use the tdplot_rotated_coords style to work in the rotated, translated coordinate frame
 \draw[thick,tdplot_rotated_coords,->] (0,0,0) -- (\baxislen,0,0) node[anchor=north west]{\axis{b}{1}};
